@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="post" action="">
-    {% csrf_token %}
-    {% for field in form %}
-        <label for="{{ field.id_for_label }}" class="label">{{ field.label }}</label>
-        {{ field }}
-    {% endfor %}
-<button type="submit">HHH</button>
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="box">
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="input-container">
+            <label for="{{ field.id_for_label }}" class="label">{{ field.name }}</label><br>
+            {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit">HHH</button>
+    </form>
+    </div>
+{% endblock %}

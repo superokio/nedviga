@@ -4,6 +4,9 @@ from .forms import *
 
 
 def home(request):
+    return render(request, 'home.html')
+
+def create(request):
     form = BaseForm(request.POST)
     if request.method == 'POST' and form.is_valid():
         dom = House.objects.create(
