@@ -36,12 +36,12 @@ Building_type = [
     ('Кирпичный дом', 'Кирпичный дом'),
 ]
 
-
 Location = [
     ('В городе', 'В городе'),
     ('Пригород', 'Пригород'),
     ('За городом', 'За городом'),
 ]
+
 
 class House(Model):
     type = CharField(max_length=25, choices=Type_choise)
@@ -52,22 +52,21 @@ class House(Model):
     size = IntegerField()
     material = CharField(max_length=255, choices=Material_choise)
     rooms = IntegerField()
-    furniture = CharField(max_length=20,choices=Furniture)
-    repair = CharField(max_length=20,choices=Repair)
+    furniture = CharField(max_length=20, choices=Furniture)
+    repair = CharField(max_length=20, choices=Repair)
     near = TextField(null=True, blank=True)
     date_of_building = IntegerField(max_length=4, null=True, blank=True)
     #################
     floor = IntegerField(null=True, blank=True)
     storeys = IntegerField(null=True, blank=True)
-    building_type = CharField(max_length=20,choices=Building_type)
+    building_type = CharField(max_length=20, choices=Building_type)
     #################
     living_space = IntegerField(null=True)
-    location = CharField(max_length=20,choices=Location)
+    location = CharField(max_length=20, choices=Location)
     convenience = TextField(null=True)
 
     def __str__(self):
         return self.title
-
 
 
 class Image(Model):
@@ -76,3 +75,26 @@ class Image(Model):
 
     def __str__(self):
         return self.house.title
+
+
+class Image(Model):
+    house = ForeignKey(House, on_delete=CASCADE, related_name='house')
+    image1 = ImageField(blank=True)
+    image2 = ImageField(blank=True)
+    image3 = ImageField(blank=True)
+    image4 = ImageField(blank=True)
+    image5 = ImageField(blank=True)
+    image6 = ImageField(blank=True)
+    image7 = ImageField(null=True)
+    image8 = ImageField(null=True)
+    image9 = ImageField(null=True)
+    image10 = ImageField(null=True)
+    image11 = ImageField(null=True)
+    image12 = ImageField(null=True)
+    image13 = ImageField(null=True)
+    image14 = ImageField(null=True)
+    image15 = ImageField(null=True)
+    image16 = ImageField(null=True)
+
+    def __str__(self):
+        return str(self.house)
