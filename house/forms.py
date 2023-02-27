@@ -7,21 +7,23 @@ class BaseForm(forms.ModelForm):
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
     bio = forms.TextInput()
     address = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
+    preview = forms.ImageField()
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered'}))
     size = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered'}))
     material = forms.ChoiceField(choices=Material_choise)
     rooms = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered', 'maxlength': '3',
-                                                                          'oninput': 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)'}))
+                                                               'oninput': 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)'}))
     furniture = forms.ChoiceField(choices=Furniture)
     repair = forms.ChoiceField(choices=Repair)
     near = forms.TextInput()
-    date_of_building = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered', 'maxlength': '4',
-                                                                          'oninput': 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)'}))
+    date_of_building = forms.IntegerField(
+        widget=forms.NumberInput(attrs={'class': 'input has-text-centered', 'maxlength': '4',
+                                        'oninput': 'javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)'}))
 
     class Meta:
         model = House
         fields = [
-            'type', 'title', 'bio', 'address',
+            'type', 'title', 'bio', 'preview', 'address',
             'price',
             'size', 'material', 'rooms', 'furniture', 'repair',
             'near', 'date_of_building', ]
@@ -72,4 +74,5 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6',
-                  'image7','image8','image9','image10','image11','image12','image13','image14','image15','image16',]
+                  'image7', 'image8', 'image9', 'image10', 'image11', 'image12', 'image13', 'image14', 'image15',
+                  'image16', ]

@@ -48,6 +48,7 @@ class House(Model):
     title = CharField(max_length=255)
     bio = TextField()
     address = CharField(max_length=255)
+    preview = ImageField(null=True, blank=True)
     price = IntegerField()
     size = IntegerField()
     material = CharField(max_length=255, choices=Material_choise)
@@ -64,6 +65,7 @@ class House(Model):
     living_space = IntegerField(null=True)
     location = CharField(max_length=20, choices=Location)
     convenience = TextField(null=True)
+    date_added = DateTimeField(null=True, auto_now_add=True)
 
     def __str__(self):
         return self.title

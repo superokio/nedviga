@@ -1,6 +1,29 @@
 {% extends 'base_layout.html' %}
-
+{% block title %}
+    Главная
+{% endblock %}
 {% block content %}
-<h1>Hello World</h1>
+    <div class="section">
+        {% for house in houses %}
+            <div class="house-card">
+                <a href="{% url 'nedviga:detail' house.pk %}">
+                    <div class="image">
+                        <img style="width: 100%; height: 300px" src="{{ house.preview.url }}" alt="">
+                    </div>
+                    <div class="house-header">
+                        {{ house.title }}
+                    </div>
+                    <div class="house-price">
+                        {{ house.price }}
+                    </div>
+                    <div class="house-bio">
+                        Комнат - {{ house.rooms }}, {{ house.size }} m² <br>
+                        Расположение - {{ house.address }}
+                        Добавлено - {{ house.date_added }}
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
 
