@@ -57,6 +57,7 @@ class House(Model):
     repair = CharField(max_length=20, choices=Repair)
     near = TextField(null=True, blank=True)
     date_of_building = IntegerField(max_length=4, null=True, blank=True)
+    seller = ForeignKey(User, on_delete=CASCADE, null=True)
     #################
     floor = IntegerField(null=True, blank=True)
     storeys = IntegerField(null=True, blank=True)

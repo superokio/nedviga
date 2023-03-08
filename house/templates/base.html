@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link rel='icon' href='{% static '25694.png' %}' type='image/x-icon'>
+</head>
+<body>
+<nav class="navbar">
+    <a href="{% url 'house:home' %}" class="nav-item">Главная</a>
+    <a href="{% url 'house:create' %}" class="nav-item">Добавить объявление</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'auth:logout' %}" class="nav-item">Выход</a>
+        <a href="{% url 'auth:profile' %}" class="nav-item"><img height="50" width="50"
+                                                                 style="border-radius: 50%; border: 1px solid grey"
+                                                                 src="{{ user.profile.avatar.url }}" alt=""></a>
+    {% else %}
+        <a href="{% url 'auth:register' %}" class="nav-item">Зарегистрироваться</a>
+        <a href="{% url 'auth:login' %}" class="nav-item">Войти</a>
+    {% endif %}
+</nav>
+<div>
+    {% block content %}
+    {% endblock %}
+    {% block script %}
+    {% endblock %}
+</div>
+<script src="{% static 'carousel.js' %}"></script>
+<script src="{% static 'select.js' %}"></script>
+</body>
+</html>

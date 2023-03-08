@@ -3,11 +3,11 @@ from .models import *
 
 
 class BaseForm(forms.ModelForm):
-    type = forms.Select(choices=Type_choise, attrs={'class': 'dropdown'})
+    type = forms.ChoiceField(choices=Type_choise)
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
     bio = forms.TextInput()
-    address = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
     preview = forms.ImageField()
+    address = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
     price = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered'}))
     size = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input has-text-centered'}))
     material = forms.ChoiceField(choices=Material_choise)
@@ -30,8 +30,8 @@ class BaseForm(forms.ModelForm):
 
 
 class ApartamentForm(forms.ModelForm):
-    floor = forms.IntegerField(widget=forms.NumberInput)
-    storeys = forms.IntegerField(widget=forms.NumberInput)
+    floor = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input'}))
+    storeys = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input'}))
     building_type = forms.ChoiceField(choices=Building_type)
 
     class Meta:
@@ -40,7 +40,7 @@ class ApartamentForm(forms.ModelForm):
 
 
 class HouseForm(forms.ModelForm):
-    living_space = forms.IntegerField(widget=forms.NumberInput)
+    living_space = forms.IntegerField(widget=forms.NumberInput(attrs={'class': 'input'}))
     location = forms.ChoiceField(choices=Location)
     convenience = forms.TextInput()
 
@@ -50,11 +50,11 @@ class HouseForm(forms.ModelForm):
 
 
 class CustomFileField(forms.FileInput):
-    pass
+    template_name = 'file.html'
 
 
 class ImageForm(forms.ModelForm):
-    image1 = forms.ImageField(widget=CustomFileField(attrs={'class': 'input'}))
+    image1 = forms.ImageField()
     image2 = forms.ImageField()
     image3 = forms.ImageField()
     image4 = forms.ImageField()
@@ -75,4 +75,4 @@ class ImageForm(forms.ModelForm):
         model = Image
         fields = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6',
                   'image7', 'image8', 'image9', 'image10', 'image11', 'image12', 'image13', 'image14', 'image15',
-                  'image16', ]
+                  'image16']

@@ -1,20 +1,28 @@
-{% extends 'base_layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
-    <div class="form">
+    <div class="form" style="padding: 20px">
         <form method="post" action="">
             {% csrf_token %}
-            <div class="input-box">
-                <label for="" class="label-create"></label>
+            <div class="textarea">
+                <label for="" class="label-create">
+                    Перечислите удобства
+                </label>
                 {{ form.convenience }}
             </div>
             <div class="input-box">
-                <label for="" class="label-create"></label>
+                <label for="" class="label-create">
+                    Жилая площадь
+                </label>
                 {{ form.living_space }}
             </div>
             <div class="input-box">
-                <label for="" class="label-create"></label>
+                <label for="" class="label-create">
+                    Место расположения
+                </label>
                 {{ form.location }}
             </div>
+                        <button class="form-button" type="submit">Создать</button>
+
         </form>
     </div>
 {% endblock %}

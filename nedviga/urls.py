@@ -6,7 +6,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(('house.urls', 'nedviga'), namespace='house'))
+    path('', include(('house.urls', 'nedviga'), namespace='house')),
+    path('auth/', include(('users.urls', 'nedviga'), namespace='auth'))
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
