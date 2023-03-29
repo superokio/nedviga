@@ -4,34 +4,20 @@
     Создать аккаунт
 {% endblock %}
 {% block content %}
-    <div id="login" class="section1">
-        <div class="section1">
-            <div class="title">Зарегистрироваться</div>
-            <form method="post" class="form-login" action="">
-                {% csrf_token %}
-                <div class="input-box">
-                    <label for="">Придумайте никнейм</label><br>
-                    {{ user_form.username }}
-                </div>
-                <div class="input-box">
-                    <label for="">Придумайте пароль</label><br>
-                    {{ user_form.password1 }}
-                </div>
-                <div class="input-box">
-                    <label for="">Повторите ваш никнейм</label><br>
-                    {{ user_form.password2 }}
-                </div>
-                <div class="input-box">
-                    <label for="">Введите полное имя</label><br>
-                    {{ profile_form.full_name }}
-                </div>
-                <div class="input-box">
-                    <label for="">Выберите аватар</label><br>
-                    {{ profile_form.avatar }}
-                </div>
-                <button class="login-bt" type="submit">Создать аккаунт</button>
-{#                <a class="login-bt" href="{% url 'social:begin' 'facebook' %}">Войти через Facebook</a>#}
-            </form>
-        </div>
-    </div>
+    <form method="post" enctype="multipart/form-data" class="form">
+        {% csrf_token %}
+        {% for field in profile_form %}
+            <div class="field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+        {% for field in user_form %}
+            <div class="field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="button background-light-orange">Зарегестрироваться</button>
+    </form>
 {% endblock %}

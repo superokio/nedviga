@@ -5,9 +5,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
 
 class UserCreationForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}), label='придумайте никнейм')
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}), label='придумайте пароль')
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}), label='повторите пароль')
 
     class Meta:
         model = User
@@ -15,8 +15,8 @@ class UserCreationForm(UserCreationForm):
 
 
 class ProfileForm(forms.ModelForm):
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
-    avatar = forms.ImageField()
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}), label='введите ваше имя')
+    avatar = forms.ImageField(widget=forms.FileInput(), label='Выберите фото профиля')
 
     class Meta:
         model = Profile
@@ -24,8 +24,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}), label='Никнейм')
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}), label='Пароль')
 
     class Meta:
         model = User
